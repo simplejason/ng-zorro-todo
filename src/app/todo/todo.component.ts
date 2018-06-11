@@ -38,20 +38,21 @@ export class TodoComponent implements OnInit {
 
   // add todo
   addTodo() {
-    this.todoLists = [ ...this.todoLists, {
+    this.todoLists.push({
       id     : this.todoLists.length,
       checked: false,
       value  : this.todoValue,
       created: new Date()
-    } ];
+    });
     this.todoValue = '';
   }
 
   // remove todo
   removeTodo(data) {
     data.created = new Date();
+    data.checked = true;
     this.todoLists = this.todoLists.filter(todo => todo.id !== data.id);
-    this.completedList = [ ...this.completedList, data ];
+    this.completedList.push(data);
   }
 
   constructor() {
