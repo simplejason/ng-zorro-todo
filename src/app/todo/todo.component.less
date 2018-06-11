@@ -1,0 +1,58 @@
+[nz-menu] {
+  line-height: 64px;
+}
+
+nz-header {
+  z-index: 10;
+  position: fixed;
+  width: 100%
+}
+
+nz-footer {
+  text-align: center;
+}
+
+nz-content {
+  padding: 0 50px;
+  margin-top: 64px;
+  nz-breadcrumb {
+    margin: 16px 0;
+  }
+  .todo-content {
+    min-height: calc(~"100vh - 188px");
+  }
+}
+
+.logo {
+  width: 120px;
+  line-height: 63px;
+  color: #f0f2f5;
+  float: left;
+}
+
+.active {
+  background-color: #1890ff;
+  &:hover {
+    background-color: #1890ff;
+  }
+}
+
+.todo-content {
+  background: #fff;
+  padding: 24px;
+  min-height: 380px;
+}
+
+.task-row {
+  top: 10px;
+  padding-bottom: 10px;
+  line-height: 30px;
+  .underline {
+    text-decoration: line-through;
+  }
+  .created-time {
+    background-color: #f0f2f5;
+    padding: 2px 4px;
+    color: #3f90ff;
+  }
+}

@@ -1,0 +1,44 @@
+<nz-layout class="layout">
+  <nz-header>
+    <div class="logo">NG ZORRO</div>
+    <ul nz-menu [nzTheme]="'dark'" [nzMode]="'horizontal'">
+      <li nz-menu-item class="active"><a [routerLink]="['todo']">My Todo</a></li>
+    </ul>
+  </nz-header>
+  <nz-content>
+    <nz-breadcrumb>
+      <nz-breadcrumb-item>Home</nz-breadcrumb-item>
+      <nz-breadcrumb-item>Todo</nz-breadcrumb-item>
+    </nz-breadcrumb>
+    <div class="todo-content">
+      <div nz-row>
+        <div nz-col nzSpan="12">
+          <nz-input-group nzSearch nzSize="large" [nzSuffix]="suffixButton">
+            <input type="text" nz-input placeholder="todo description" [(ngModel)]="todoValue">
+          </nz-input-group>
+          <ng-template #suffixButton>
+            <button nz-button nzType="primary" nzSearch nzSize="large" [disabled]="!todoValue" (click)="addTodo()">Add Todo</button>
+          </ng-template>
+        </div>
+        <div nz-col nzSpan="24" class="task-row">
+          Todo Tasks ({{todoLists.length}})
+        </div>
+        <div nz-col nzSpan="24" *ngFor="let todo of todoLists" class="task-row">
+          <label nz-checkbox [(ngModel)]="todo.checked" [class.underline]="todo.checked" (click)="removeTodo(todo)">{{todo.value}}</label>
+          <span class="created-time">created at {{todo.created|date:'yyyy-MM-dd HH:mm:ss'}}</span>
+        </div>
+        <div nz-col nzSpan="24" class="task-row">
+          Completed Tasks  ({{completedList.length}})
+        </div>
+        <div nz-col nzSpan="24" *ngFor="let todo of completedList" class="task-row">
+          <label nz-checkbox nzDisabled [ngModel]="true"></label>
+          <span class="underline">
+            {{todo.value}}
+            <span class="created-time">completed at {{todo.created|date:'yyyy-MM-dd HH:mm:ss'}}</span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </nz-content>
+  <nz-footer>Ant Design ©2018 Implement By NG ZORRO & Angular</nz-footer>
+</nz-layout>
