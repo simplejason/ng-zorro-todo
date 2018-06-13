@@ -1,0 +1,16 @@
+<ng-container *ngIf="child.children">
+  <li nz-submenu>
+    <span title>{{child.name}}</span>
+    <ul>
+      <ng-container *ngFor="let subChild of child.children">
+        <app-todo-menu-child
+          [child]="subChild"
+          (clickEmit)="clickEmit.emit($event)">
+        </app-todo-menu-child>
+      </ng-container>
+    </ul>
+  </li>
+</ng-container>
+<ng-container *ngIf="!child.children">
+  <li nz-menu-item [nzSelected]="activedMenuId===child.id" (click)="clickEmit.emit(child)">{{child.name}}</li>
+</ng-container>

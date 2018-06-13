@@ -10,32 +10,44 @@
       <nz-breadcrumb-item>Home</nz-breadcrumb-item>
       <nz-breadcrumb-item>Todo</nz-breadcrumb-item>
     </nz-breadcrumb>
-    <div class="todo-content">
-      <div nz-row>
-        <div nz-col nzSpan="12">
-          <nz-input-group nzSearch nzSize="large" [nzSuffix]="suffixButton">
-            <input type="text" nz-input placeholder="todo description" [(ngModel)]="todoValue">
-          </nz-input-group>
-          <ng-template #suffixButton>
-            <button nz-button nzType="primary" nzSearch nzSize="large" [disabled]="!todoValue" (click)="addTodo()">Add Todo</button>
-          </ng-template>
+    <div>
+      <div nz-row class="todo-content">
+        <div nz-col nzSpan="4">
+          <app-todo-menu [menu]="todoMenu" [activedMenuId]="activedMenu.id"
+                         (todoOutputEmit)="activeMenuItem($event)"></app-todo-menu>
         </div>
-        <div nz-col nzSpan="24" class="task-row">
-          Todo Tasks ({{todoLists.length}})
-        </div>
-        <div nz-col nzSpan="24" *ngFor="let todo of todoLists" class="task-row">
-          <label nz-checkbox [(ngModel)]="todo.checked" [class.underline]="todo.checked" (click)="removeTodo(todo)">{{todo.value}}</label>
-          <span class="created-time">created at {{todo.created|date:'yyyy-MM-dd HH:mm:ss'}}</span>
-        </div>
-        <div nz-col nzSpan="24" class="task-row">
-          Completed Tasks  ({{completedList.length}})
-        </div>
-        <div nz-col nzSpan="24" *ngFor="let todo of completedList" class="task-row">
-          <label nz-checkbox nzDisabled [ngModel]="true"></label>
-          <span class="underline">
+        <div nz-col nzSpan="16" nzOffset="1">
+          <div nz-col nzSpan="24">
+            <nz-input-group nzSearch nzSize="large" [nzSuffix]="suffixButton">
+              <input type="text" nz-input placeholder="todo description" [(ngModel)]="todoValue">
+            </nz-input-group>
+            <ng-template #suffixButton>
+              <button nz-button nzType="primary" nzSearch nzSize="large" [disabled]="!todoValue" (click)="addTodo()">Add
+                Todo
+              </button>
+            </ng-template>
+          </div>
+          <div nz-col nzSpan="24" class="task-row">
+            Todo Tasks ({{activedMenu?.todoLists?.length||0}})
+          </div>
+          <div nz-col nzSpan="24" *ngFor="let todo of activedMenu.todoLists" class="task-row">
+            <label nz-checkbox [(ngModel)]="todo.checked" [class.underline]="todo.checked" (click)="removeTodo(todo)">{{todo.value}}</label>
+            <span class="created-time">created at {{todo.created|date:'yyyy-MM-dd HH:mm:ss'}}</span>
+            <span class="actions">
+            <i class="anticon anticon-edit" nz-tooltip nzTitle="Edit Task" (click)="editTodo(todo)"></i>
+            <i class="anticon anticon-close-circle-o" nz-tooltip nzTitle="Delete Task" (click)="deleteTodo(todo)"></i>
+          </span>
+          </div>
+          <div nz-col nzSpan="24" class="task-row">
+            Completed Tasks ({{activedMenu?.completedList?.length||0}})
+          </div>
+          <div nz-col nzSpan="24" *ngFor="let todo of activedMenu.completedList" class="task-row">
+            <label nz-checkbox nzDisabled [ngModel]="true"></label>
+            <span class="underline">
             {{todo.value}}
             <span class="created-time">completed at {{todo.created|date:'yyyy-MM-dd HH:mm:ss'}}</span>
           </span>
+          </div>
         </div>
       </div>
     </div>

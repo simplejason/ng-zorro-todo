@@ -18,8 +18,14 @@ nz-content {
   nz-breadcrumb {
     margin: 16px 0;
   }
-  .todo-content {
-    min-height: calc(~"100vh - 188px");
+}
+
+.todo-content {
+  min-height: calc(~"100vh - 188px");
+  background: #fff;
+  padding: 24px 24px 24px 0;
+  nz-input-group {
+    margin: 18px 0;
   }
 }
 
@@ -37,12 +43,6 @@ nz-content {
   }
 }
 
-.todo-content {
-  background: #fff;
-  padding: 24px;
-  min-height: 380px;
-}
-
 .task-row {
   top: 10px;
   padding-bottom: 10px;
@@ -54,5 +54,12 @@ nz-content {
     background-color: #f0f2f5;
     padding: 2px 4px;
     color: #3f90ff;
+  }
+  .actions {
+    float: right;
+    i {
+      cursor: pointer;
+      margin-left: 12px;
+    }
   }
 }

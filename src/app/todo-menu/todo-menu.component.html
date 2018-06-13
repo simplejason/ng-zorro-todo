@@ -1,0 +1,7 @@
+<nz-sider>
+  <ul nz-menu [nzMode]="'inline'">
+    <ng-container *ngFor="let subMenu of menu">
+      <app-todo-menu-child [child]="subMenu" [activedMenuId]="activedMenuId" (clickEmit)="todoOutputEmit.emit($event)"></app-todo-menu-child>
+    </ng-container>
+  </ul>
+</nz-sider>

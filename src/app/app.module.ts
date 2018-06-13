@@ -9,16 +9,22 @@ import { NgZorroAntdModule, NZ_I18N, zh_CN } from 'ng-zorro-antd';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
+import { TodoMenuComponent } from './todo-menu/todo-menu.component';
+import { TodoModalEditComponent } from './todo-modal-edit/todo-modal-edit.component';
 import { TodoComponent } from './todo/todo.component';
+import { TodoMenuChildComponent } from './todo-menu/todo-menu-child.component';
 
 registerLocaleData(zh);
 
 @NgModule({
-  declarations: [
+  declarations   : [
     AppComponent,
-    TodoComponent
+    TodoComponent,
+    TodoMenuComponent,
+    TodoMenuChildComponent,
+    TodoModalEditComponent
   ],
-  imports     : [
+  imports        : [
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
@@ -26,8 +32,11 @@ registerLocaleData(zh);
     AppRoutingModule,
     NgZorroAntdModule
   ],
-  providers   : [ { provide: NZ_I18N, useValue: zh_CN } ],
-  bootstrap   : [ AppComponent ]
+  entryComponents: [
+    TodoModalEditComponent
+  ],
+  providers      : [ { provide: NZ_I18N, useValue: zh_CN } ],
+  bootstrap      : [ AppComponent ]
 })
 export class AppModule {
 }

@@ -1,0 +1,17 @@
+<form nz-form>
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired>Current Task</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24">
+      <input nz-input [ngModel]="todo.value" disabled [ngModelOptions]="{standalone: true}">
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired>New Task</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24">
+      <input nz-input [(ngModel)]="newValue" placeholder="input new task" [ngModelOptions]="{standalone: true}">
+    </nz-form-control>
+  </nz-form-item>
+</form>
+<div class="custom-footer">
+  <button nz-button [nzType]="'primary'" (click)="confirmEdit()">Edit</button>
+</div>
