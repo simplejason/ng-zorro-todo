@@ -23,8 +23,14 @@ export class TodoComponent implements OnInit {
       name    : '一周',
       children: [
         {
-          id  : '201',
-          name: '周一'
+          id      : '201',
+          name    : '周一',
+          children: [
+            {
+              id  : '2011',
+              name: '周一12'
+            }
+          ]
         },
         {
           id  : '202',
